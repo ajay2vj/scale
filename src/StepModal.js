@@ -16,6 +16,7 @@ import ContactForm from "./components/contactForm";
 import PersonalForm from "./components/personalForm";
 import PaymentForm from "./components/paymentForm";
 import Modal from "./components/Modal";
+import {GrClose} from 'react-icons/gr';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -126,6 +127,22 @@ export default function StepModal() {
         showModal={showmodal}
         setShowModal={()=>setShowModal(false)}
       >
+        <div className="w-full flex justify-between p-5">
+          <div>
+            <Typography
+              style={{fontSize: '18px', fontWeight: '500'}}
+            >
+              Installation Steps
+            </Typography>
+          </div>
+          <GrClose
+            color="#A6A8AA"
+            className="cursor-pointer"
+            onClick={() => {
+              setShowModal(false);
+            }}
+          />
+        </div>
         <Stepper alternativeLabel activeStep={activeStep}>
           {steps.map((step, index) => {
             const labelProps = {};
