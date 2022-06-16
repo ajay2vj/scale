@@ -1,1 +1,10 @@
-
+.MuiStepIcon-root.MuiStepIcon-active {
+  color: #0027ff !important;
+}
+.MuiButton-containedPrimary {
+  color: #fff;
+  background-color: #0027ff !important;
+}
+.MuiStepIcon-root.MuiStepIcon-completed{
+  color: #0027ff !important;
+}
