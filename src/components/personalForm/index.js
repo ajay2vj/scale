@@ -17,9 +17,9 @@ export default function PersonalForm() {
         render={({ field }) => (
           <TextField
             id="address1"
-            label="Address 1"
+            label="OS Version"
             variant="outlined"
-            placeholder="Enter Your Address 1"
+            placeholder="Enter OS Version"
             fullWidth
             margin="normal"
             {...field}
@@ -32,24 +32,9 @@ export default function PersonalForm() {
         render={({ field }) => (
           <TextField
             id="address2"
-            label="Address 2"
+            label="Kernal Version"
             variant="outlined"
-            placeholder="Enter Your Address 2"
-            fullWidth
-            margin="normal"
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="country"
-        render={({ field }) => (
-          <TextField
-            id="country"
-            label="Country"
-            variant="outlined"
-            placeholder="Enter Your Country Name"
+            placeholder="Enter Kernal Version"
             fullWidth
             margin="normal"
             {...field}

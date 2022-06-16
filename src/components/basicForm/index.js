@@ -17,9 +17,9 @@ export default function BasicForm(){
         render={({ field }) => (
           <TextField
             id="first-name"
-            label="First Name"
+            label="Custom Name"
             variant="outlined"
-            placeholder="Enter Your First Name"
+            placeholder="Enter Custom Name"
             fullWidth
             margin="normal"
             {...field}
@@ -33,25 +33,9 @@ export default function BasicForm(){
         render={({ field }) => (
           <TextField
             id="last-name"
-            label="Last Name"
+            label="Port Number"
             variant="outlined"
-            placeholder="Enter Your Last Name"
-            fullWidth
-            margin="normal"
-            {...field}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name="nickName"
-        render={({ field }) => (
-          <TextField
-            id="nick-name"
-            label="Nick Name"
-            variant="outlined"
-            placeholder="Enter Your Nick Name"
+            placeholder="Enter Port Number"
             fullWidth
             margin="normal"
             {...field}

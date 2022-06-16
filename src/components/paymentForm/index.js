@@ -17,9 +17,9 @@ export default function PaymentForm(){
         render={({ field }) => (
           <TextField
             id="cardNumber"
-            label="Card Number"
+            label="UI Core Version"
             variant="outlined"
-            placeholder="Enter Your Card Number"
+            placeholder="Enter UI Core Version"
             fullWidth
             margin="normal"
             {...field}
@@ -32,24 +32,9 @@ export default function PaymentForm(){
         render={({ field }) => (
           <TextField
             id="cardMonth"
-            label="Card Month"
+            label="Build Number"
             variant="outlined"
-            placeholder="Enter Your Card Month"
-            fullWidth
-            margin="normal"
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="cardYear"
-        render={({ field }) => (
-          <TextField
-            id="cardYear"
-            label="Card Year"
-            variant="outlined"
-            placeholder="Enter Your Card Year"
+            placeholder="Enter Build Number"
             fullWidth
             margin="normal"
             {...field}

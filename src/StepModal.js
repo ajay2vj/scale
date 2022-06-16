@@ -17,19 +17,21 @@ import PersonalForm from "./components/personalForm";
 import PaymentForm from "./components/paymentForm";
 import Modal from "./components/Modal";
 import {GrClose} from 'react-icons/gr';
+import APPICON from './images/library-alpine-logo.png'
 
 const useStyles = makeStyles((theme) => ({
   button: {
     marginRight: theme.spacing(1),
+    marginTop: '20px'
   },
 }));
 
 function getSteps() {
   return [
     "Basic information",
-    "Contact Information",
-    "Personal Information",
-    "Payment",
+    "App Information",
+    "Sotware Information",
+    "Final Step",
   ];
 }
 
@@ -143,31 +145,34 @@ export default function StepModal() {
             }}
           />
         </div>
-        <Stepper alternativeLabel activeStep={activeStep}>
-          {steps.map((step, index) => {
-            const labelProps = {};
-            const stepProps = {};
-            if (isStepOptional(index)) {
-              labelProps.optional = (
-                <Typography
-                  variant="caption"
-                  align="center"
-                  style={{ display: "block" }}
-                >
-                  optional
-                </Typography>
+        <div className="grid-class">
+          <img src={APPICON} alt="app icon" className="ml-5"/>
+          <Stepper alternativeLabel activeStep={activeStep}>
+            {steps.map((step, index) => {
+              const labelProps = {};
+              const stepProps = {};
+              if (isStepOptional(index)) {
+                labelProps.optional = (
+                  <Typography
+                    variant="caption"
+                    align="center"
+                    style={{ display: "block" }}
+                  >
+                    optional
+                  </Typography>
+                );
+              }
+              if (isStepSkipped(index)) {
+                stepProps.completed = false;
+              }
+              return (
+                <Step {...stepProps} key={index}>
+                  <StepLabel {...labelProps}>{step}</StepLabel>
+                </Step>
               );
-            }
-            if (isStepSkipped(index)) {
-              stepProps.completed = false;
-            }
-            return (
-              <Step {...stepProps} key={index}>
-                <StepLabel {...labelProps}>{step}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
+            })}
+          </Stepper>
+        </div>
 
         {activeStep === steps.length ? (
           <div className="pb-6 pt-6">

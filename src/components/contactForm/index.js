@@ -17,9 +17,9 @@ export default function ContactForm() {
         render={({ field }) => (
           <TextField
             id="email"
-            label="E-mail"
+            label="Version"
             variant="outlined"
-            placeholder="Enter Your E-mail Address"
+            placeholder="Enter Version"
             fullWidth
             margin="normal"
             {...field}
@@ -33,24 +33,9 @@ export default function ContactForm() {
         render={({ field }) => (
           <TextField
             id="phone-number"
-            label="Phone Number"
+            label="Modal Number"
             variant="outlined"
-            placeholder="Enter Your Phone Number"
-            fullWidth
-            margin="normal"
-            {...field}
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="alternatePhone"
-        render={({ field }) => (
-          <TextField
-            id="alternate-phone"
-            label="Alternate Phone"
-            variant="outlined"
-            placeholder="Enter Your Alternate Phone"
+            placeholder="Enter Modal Number"
             fullWidth
             margin="normal"
             {...field}
