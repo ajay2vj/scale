@@ -15,6 +15,7 @@ import BasicForm from "./components/basicForm";
 import ContactForm from "./components/contactForm";
 import PersonalForm from "./components/personalForm";
 import PaymentForm from "./components/paymentForm";
+import Modal from "./components/Modal";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -49,7 +50,8 @@ function getStepContent(step) {
   }
 }
 
-const StepModal = () => {
+export default function StepModal() {
+  const [showmodal, setShowModal] = useState(false)
   const classes = useStyles();
   const methods = useForm({
     defaultValues: {
@@ -82,12 +84,11 @@ const StepModal = () => {
   const handleNext = (data) => {
     // console.log(data);
     if (activeStep === steps.length - 1) {
-      fetch("https://jsonplaceholder.typicode.com/comments")
-        .then((data) => data.json())
-        .then((res) => {
-          // console.log(res);
-          setActiveStep(activeStep + 1);
-        });
+      setActiveStep(activeStep + 1);
+      setTimeout(()=>{
+        setShowModal(false)
+        window.location.reload()
+      },[2000])
     } else {
       setActiveStep(activeStep + 1);
       setSkippedSteps(
@@ -112,74 +113,88 @@ const StepModal = () => {
   // };
   return (
     <div>
-      <Stepper alternativeLabel activeStep={activeStep}>
-        {steps.map((step, index) => {
-          const labelProps = {};
-          const stepProps = {};
-          if (isStepOptional(index)) {
-            labelProps.optional = (
-              <Typography
-                variant="caption"
-                align="center"
-                style={{ display: "block" }}
-              >
-                optional
-              </Typography>
+      <div className="p-8">
+      <Button 
+        variant="contained" 
+        onClick={()=>setShowModal(true)}
+      >
+        Click to Install
+        </Button>
+      </div>
+      <Modal
+        className="md:w-2/3"
+        showModal={showmodal}
+        setShowModal={()=>setShowModal(false)}
+      >
+        <Stepper alternativeLabel activeStep={activeStep}>
+          {steps.map((step, index) => {
+            const labelProps = {};
+            const stepProps = {};
+            if (isStepOptional(index)) {
+              labelProps.optional = (
+                <Typography
+                  variant="caption"
+                  align="center"
+                  style={{ display: "block" }}
+                >
+                  optional
+                </Typography>
+              );
+            }
+            if (isStepSkipped(index)) {
+              stepProps.completed = false;
+            }
+            return (
+              <Step {...stepProps} key={index}>
+                <StepLabel {...labelProps}>{step}</StepLabel>
+              </Step>
             );
-          }
-          if (isStepSkipped(index)) {
-            stepProps.completed = false;
-          }
-          return (
-            <Step {...stepProps} key={index}>
-              <StepLabel {...labelProps}>{step}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+          })}
+        </Stepper>
 
-      {activeStep === steps.length ? (
-        <Typography variant="h3" align="center">
-          Thank You
-        </Typography>
-      ) : (
-        <>
-          <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(handleNext)}>
-              {getStepContent(activeStep)}
+        {activeStep === steps.length ? (
+          <div className="pb-6 pt-6">
+            <Typography variant="h3" align="center">
+              Thank You
+            </Typography>
+          </div>
+        ) : (
+          <>
+            <FormProvider {...methods}>
+              <form onSubmit={methods.handleSubmit(handleNext)} className="p-7">
+                {getStepContent(activeStep)}
 
-              <Button
-                className={classes.button}
-                disabled={activeStep === 0}
-                onClick={handleBack}
-              >
-                back
-              </Button>
-              {isStepOptional(activeStep) && (
+                <Button
+                  className={classes.button}
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                >
+                  back
+                </Button>
+                {isStepOptional(activeStep) && (
+                  <Button
+                    className={classes.button}
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSkip}
+                  >
+                    skip
+                  </Button>
+                )}
                 <Button
                   className={classes.button}
                   variant="contained"
                   color="primary"
-                  onClick={handleSkip}
+                  // onClick={handleNext}
+                  type="submit"
                 >
-                  skip
+                  {activeStep === steps.length - 1 ? "Finish" : "Next"}
                 </Button>
-              )}
-              <Button
-                className={classes.button}
-                variant="contained"
-                color="primary"
-                // onClick={handleNext}
-                type="submit"
-              >
-                {activeStep === steps.length - 1 ? "Finish" : "Next"}
-              </Button>
-            </form>
-          </FormProvider>
-        </>
-      )}
+              </form>
+            </FormProvider>
+          </>
+        )}
+      </Modal>
     </div>
   );
 };
-
-export default StepModal;

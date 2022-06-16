@@ -17,7 +17,7 @@ export default function Modal({
     };
     window.addEventListener('keydown', close);
     return () => window.removeEventListener('keydown', close);
-  }, []);
+  }, [setShowModal]);
 
   function handleKeyPress() {}
 
