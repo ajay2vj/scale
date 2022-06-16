@@ -4,11 +4,20 @@ import './index.css';
 import './input.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { QueryClient, QueryClientProvider } from 'react-query';
+const QueryRender = () => {
+  const queryClient = new QueryClient();
 
+  return(
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
+  )
+}
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <QueryRender />
   </React.StrictMode>
 );
 

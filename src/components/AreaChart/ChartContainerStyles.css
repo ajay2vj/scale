@@ -1,0 +1,21 @@
+.resizer{
+	/* width: 50%; */
+	min-width: 40%;
+	max-width: 100%;
+	resize: horizontal;
+	overflow: hidden;
+}
+/* .icon-resize::after {
+  content: "";
+  position: relative;
+  left: 3px;
+  top: 10px;
+  width: 13px;
+  height: 13px;
+  padding: 2px;
+  background-image: url('../../assets/imagesV3/dots.svg');
+  box-sizing: border-box;
+} */
+::-webkit-resizer {
+	display: none;
+}

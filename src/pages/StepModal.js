@@ -11,13 +11,13 @@ import {
   useForm,
   FormProvider,
 } from "react-hook-form";
-import BasicForm from "./components/basicForm";
-import ContactForm from "./components/contactForm";
-import PersonalForm from "./components/personalForm";
-import PaymentForm from "./components/paymentForm";
-import Modal from "./components/Modal";
+import BasicForm from "../components/basicForm";
+import ContactForm from "../components/contactForm";
+import PersonalForm from "../components/personalForm";
+import PaymentForm from "../components/paymentForm";
+import Modal from "../components/Modal";
 import {GrClose} from 'react-icons/gr';
-import APPICON from './images/library-alpine-logo.png'
+import APPICON from '../images/library-alpine-logo.png'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -120,6 +120,7 @@ export default function StepModal() {
       <Button 
         variant="contained" 
         onClick={()=>setShowModal(true)}
+        style={{fontWeight: 'bolder'}}
       >
         Click to Install
         </Button>
