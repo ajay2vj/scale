@@ -1,6 +1,7 @@
 import React from 'react';
-// import moment from 'moment';
-// import 'moment-timezone';
+import moment from 'moment';
+import 'moment-timezone';
+
 import {
   // AreaChart,
   ResponsiveContainer,
@@ -38,11 +39,14 @@ export default function AC({
     }
   }
 
-  // const timeZone = moment.tz.guess();
-  // const time = new Date();
-  // const timeZoneOffset = time.getTimezoneOffset();
-  // const timeformat = moment.tz.zone(timeZone).abbr(timeZoneOffset);
-
+  const timeZone = moment.tz.guess();
+  const time = new Date();
+  const timeZoneOffset = time.getTimezoneOffset();
+  const timeformat = moment.tz.zone(timeZone).abbr(timeZoneOffset);
+  const dateFormatter = date => {
+    // return moment(date).unix();
+    return moment(date).format('DD-MM-YY HH:mm');
+  };
   return (
     <ResponsiveContainer width='100%' height={230}>
       <LineChart
@@ -58,10 +62,18 @@ export default function AC({
       >
         <CartesianGrid strokeDasharray="3 3" />
 
-        <XAxis dataKey={XdataKey} stroke="black" allowDuplicatedCategory={false} style={{ fontSize: '12', fontWeight: '600' }}>
+        <XAxis 
+          dataKey={XdataKey} 
+          stroke="black" 
+          allowDuplicatedCategory={false} 
+          style={{ fontSize: '12', fontWeight: '600' }} 
+          tickFormatter={dateFormatter}
+          type='number'
+          domain={['dataMin', 'dataMax']}
+        >
 
           <Label
-            value={`Time`}
+            value={`Time (${timeformat})`}
             position="bottom"
             offset={0}
             style={{ textAnchor: 'middle', fontSize: '14',fontWeight:'600'}}
@@ -76,7 +88,9 @@ export default function AC({
             style={{ textAnchor: 'middle', fontSize: '14',fontWeight:'600'}}
           />
         </YAxis>
-        <Tooltip wrapperStyle={wrapperStyle} />
+        <Tooltip 
+          wrapperStyle={wrapperStyle}
+        />
         {refLine && (
           <ReferenceLine y={refLine} stroke="#E23939" strokeWidth="1" />
         )}

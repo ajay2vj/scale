@@ -9,14 +9,13 @@ export default function ChartBox({
   large,
   className,
   margin,
-  alignClass,
   paddingClass
 }) {
   
  
   return (
     <div
-    style={{width:'49%', height: '359px'}}
+    style={{width:'48%', height: '359px'}}
     className={`min-h-40 ${large && 'w-full'
       } bg-white shadow-sm mt-3 border border-gray-100 ${margin}`}
     >
